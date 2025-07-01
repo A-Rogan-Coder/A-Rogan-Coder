@@ -10,30 +10,100 @@
 
   <style>
     body {
-      background-color: #f4f4f4;
-      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
     }
 
     .main-box {
       max-width: 700px;
-      margin: 50px auto;
+      margin: 30px auto;
       background: white;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+      padding: 40px 50px;
+      border-radius: 15px;
+      box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 10px 20px rgba(0, 0, 0, 0.08);
       text-align: center;
+      opacity: 0;
+      animation: fadeInUp 0.8s forwards ease-out;
     }
 
     .info-text {
       font-size: 1.25rem;
       margin-top: 20px;
-      color: #444;
+      color: #555;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      transition: transform 0.3s ease, color 0.3s ease;
+      cursor: default;
     }
 
     h1:hover,
     h3:hover {
-      transform: scale(1.02);
-      transition: all 0.3s ease;
+      transform: scale(1.05);
+      color: #336699;
+    }
+
+    /* Button styles */
+    .btn {
+      font-weight: 600;
+      border-radius: 30px;
+      padding: 10px 25px;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Surprise Button specific */
+    .btn-warning:hover {
+      background-color: #ffb84d;
+      color: #3a3a3a;
+    }
+
+    /* Learn More Button specific */
+    .btn-success:hover {
+      background-color: #28a745cc;
+      color: #fff;
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      .main-box {
+        padding: 30px 20px;
+        margin: 20px 10px;
+      }
+      h1, h3 {
+        font-size: 1.8rem;
+      }
+      .info-text {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
