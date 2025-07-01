@@ -80,6 +80,44 @@
       color: #fff;
     }
 
+    /* Calculator styles */
+    .calculator {
+      max-width: 300px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .calculator input {
+      width: 100%;
+      font-size: 1.5rem;
+      padding: 10px;
+      margin-bottom: 15px;
+      text-align: right;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .calculator button {
+      width: 22%;
+      font-size: 1.2rem;
+      margin: 2px;
+      padding: 10px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .calculator button:hover {
+      background-color: #d0e6f7;
+    }
+    .calculator .btn-clear {
+      width: 100%;
+      margin-top: 10px;
+      background-color: #dc3545;
+      color: white;
+    }
+    .calculator .btn-clear:hover {
+      background-color: #b02a37;
+    }
+
     /* Animation Keyframes */
     @keyframes fadeInUp {
       from {
@@ -103,6 +141,9 @@
       }
       .info-text {
         font-size: 1.1rem;
+      }
+      .calculator {
+        max-width: 100%;
       }
     }
   </style>
@@ -138,6 +179,41 @@
       <!-- Surprise Button -->
       <button class="btn btn-warning mt-3" onclick="showAlert()">Click for a Surprise</button>
     </div>
+
+    <!-- Calculator white box -->
+    <div class="main-box mt-4">
+      <h2 class="text-primary mb-4">Simple Calculator</h2>
+
+      <div class="calculator">
+        <input type="text" id="calcInput" readonly placeholder="0" />
+
+        <div>
+          <button onclick="appendValue('7')">7</button>
+          <button onclick="appendValue('8')">8</button>
+          <button onclick="appendValue('9')">9</button>
+          <button onclick="appendValue('/')">÷</button>
+        </div>
+        <div>
+          <button onclick="appendValue('4')">4</button>
+          <button onclick="appendValue('5')">5</button>
+          <button onclick="appendValue('6')">6</button>
+          <button onclick="appendValue('*')">×</button>
+        </div>
+        <div>
+          <button onclick="appendValue('1')">1</button>
+          <button onclick="appendValue('2')">2</button>
+          <button onclick="appendValue('3')">3</button>
+          <button onclick="appendValue('-')">−</button>
+        </div>
+        <div>
+          <button onclick="appendValue('0')">0</button>
+          <button onclick="appendValue('.')">.</button>
+          <button onclick="calculateResult()">=</button>
+          <button onclick="appendValue('+')">+</button>
+        </div>
+        <button class="btn btn-danger btn-clear" onclick="clearInput()">Clear</button>
+      </div>
+    </div>
   </div>
 
   <!-- Bootstrap JS -->
@@ -148,8 +224,33 @@
     function showAlert() {
       alert("🚀Alfie Rogan is better than Anth Rogan at coding🚀");
     }
+
+    function appendValue(val) {
+      const input = document.getElementById('calcInput');
+      if(input.value === '0' && val !== '.') {
+        input.value = val; // replace 0 on first input except decimal
+      } else {
+        input.value += val;
+      }
+    }
+
+    function calculateResult() {
+      const input = document.getElementById('calcInput');
+      try {
+        // Evaluate the expression safely
+        // eslint-disable-next-line no-eval
+        let result = eval(input.value);
+        if(result === undefined) result = '';
+        input.value = result;
+      } catch (e) {
+        input.value = 'Error';
+      }
+    }
+
+    function clearInput() {
+      document.getElementById('calcInput').value = '';
+    }
   </script>
 
 </body>
 </html>
-
